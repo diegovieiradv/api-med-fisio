@@ -1,8 +1,8 @@
-package med.voll.api.controller;
+package api.med.fisio.controller;
 
-import med.voll.api.domain.endereco.DadosEndereco;
-import med.voll.api.domain.endereco.Endereco;
-import med.voll.api.domain.medico.*;
+import api.med.fisio.domain.endereco.DadosEndereco;
+import api.med.fisio.domain.endereco.Endereco;
+import api.med.fisio.domain.medico.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package med.voll.api.domain.consulta.validacoes.cancelamento;
+package api.med.fisio.domain.consulta.validacoes.cancelamento;
 
-import med.voll.api.domain.consulta.DadosCancelamentoConsulta;
+import api.med.fisio.domain.consulta.DadosCancelamentoConsulta;
 
 public interface ValidadorCancelamentoDeConsulta {
 

@@ -1,9 +1,9 @@
-package med.voll.api.domain.medico;
+package api.med.fisio.domain.medico;
 
-import med.voll.api.domain.consulta.Consulta;
-import med.voll.api.domain.endereco.DadosEndereco;
-import med.voll.api.domain.paciente.DadosCadastroPaciente;
-import med.voll.api.domain.paciente.Paciente;
+import api.med.fisio.domain.consulta.Consulta;
+import api.med.fisio.domain.endereco.DadosEndereco;
+import api.med.fisio.domain.paciente.DadosCadastroPaciente;
+import api.med.fisio.domain.paciente.Paciente;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

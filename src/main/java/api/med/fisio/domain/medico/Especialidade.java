@@ -1,4 +1,4 @@
-package med.voll.api.domain.medico;
+package api.med.fisio.domain.medico;
 
 public enum Especialidade {
 

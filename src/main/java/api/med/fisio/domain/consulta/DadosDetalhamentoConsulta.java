@@ -1,4 +1,4 @@
-package med.voll.api.domain.consulta;
+package api.med.fisio.domain.consulta;
 
 import java.time.LocalDateTime;
 

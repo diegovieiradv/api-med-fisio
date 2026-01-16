@@ -1,10 +1,10 @@
-package med.voll.api.controller;
+package api.med.fisio.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.domain.usuario.DadosAutenticacao;
-import med.voll.api.domain.usuario.Usuario;
-import med.voll.api.infra.security.DadosTokenJWT;
-import med.voll.api.infra.security.TokenService;
+
+import api.med.fisio.domain.usuario.Usuario;
+import api.med.fisio.infra.security.DadosTokenJWT;
+import api.med.fisio.infra.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,7 +25,7 @@ public class AutenticacaoController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
+    public ResponseEntity efetuarLogin(@RequestBody @Valid med.fisio.api.domain.usuario.DadosAutenticacao dados) {
         var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
         var authentication = manager.authenticate(authenticationToken);
 

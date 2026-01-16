@@ -1,10 +1,11 @@
-package med.voll.api.controller;
+package api.med.fisio.controller;
+
+import api.med.fisio.domain.consulta.AgendaDeConsultas;
+import api.med.fisio.domain.consulta.DadosAgendamentoConsulta;
+import api.med.fisio.domain.consulta.DadosCancelamentoConsulta;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
-import med.voll.api.domain.consulta.AgendaDeConsultas;
-import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
-import med.voll.api.domain.consulta.DadosCancelamentoConsulta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
