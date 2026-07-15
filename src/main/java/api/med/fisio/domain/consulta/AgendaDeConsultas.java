@@ -6,6 +6,8 @@ import api.med.fisio.domain.consulta.validacoes.cancelamento.ValidadorCancelamen
 import api.med.fisio.domain.medico.Medico;
 import api.med.fisio.domain.medico.MedicoRepository;
 import api.med.fisio.domain.paciente.PacienteRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class AgendaDeConsultas {
+
+    private static final Logger logger = LoggerFactory.getLogger(AgendaDeConsultas.class);
 
     @Autowired
     private ConsultaRepository consultaRepository;
@@ -51,6 +55,9 @@ public class AgendaDeConsultas {
         var consulta = new Consulta(null, medico, paciente, dados.data(), null);
         consultaRepository.save(consulta);
 
+        logger.info("Consulta agendada: id={}, medico_id={}, paciente_id={}, data={}",
+                consulta.getId(), medico.getId(), paciente.getId(), dados.data());
+
         return new DadosDetalhamentoConsulta(consulta);
     }
 
@@ -64,6 +71,8 @@ public class AgendaDeConsultas {
 
         var consulta = consultaRepository.getReferenceById(dados.idConsulta());
         consulta.cancelar(dados.motivo());
+
+        logger.info("Consulta cancelada: id={}, motivo={}", dados.idConsulta(), dados.motivo());
     }
 
 

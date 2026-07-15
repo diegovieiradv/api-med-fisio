@@ -1,5 +1,7 @@
 package api.med.fisio.domain.medico;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MedicoService {
 
+    private static final Logger logger = LoggerFactory.getLogger(MedicoService.class);
+
     @Autowired
     private MedicoRepository repository;
 
@@ -16,6 +20,7 @@ public class MedicoService {
     public DadosDetalhamentoMedico cadastrar(DadosCadastroMedico dados) {
         var medico = new Medico(dados);
         repository.save(medico);
+        logger.info("Médico cadastrado: id={}, nome={}, email={}", medico.getId(), medico.getNome(), medico.getEmail());
         return new DadosDetalhamentoMedico(medico);
     }
 
@@ -27,6 +32,7 @@ public class MedicoService {
     public DadosDetalhamentoMedico atualizar(DadosAtualizacaoMedico dados) {
         var medico = repository.getReferenceById(dados.id());
         medico.atualizarInformacoes(dados);
+        logger.info("Médico atualizado: id={}", medico.getId());
         return new DadosDetalhamentoMedico(medico);
     }
 
@@ -34,6 +40,7 @@ public class MedicoService {
     public void excluir(Long id) {
         var medico = repository.getReferenceById(id);
         medico.excluir();
+        logger.info("Médico excluído (soft delete): id={}", id);
     }
 
     public DadosDetalhamentoMedico detalhar(Long id) {
