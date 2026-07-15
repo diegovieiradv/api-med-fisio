@@ -2,6 +2,7 @@ package api.med.fisio.controller;
 
 import api.med.fisio.domain.endereco.DadosEndereco;
 import api.med.fisio.domain.endereco.Endereco;
+import api.med.fisio.domain.endereco.ViaCepService;
 import api.med.fisio.domain.medico.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,6 +39,9 @@ class MedicoControllerTest {
     @MockBean
     private MedicoRepository repository;
 
+    @MockBean
+    private ViaCepService viaCepService;
+
     @Test
     @DisplayName("Deveria devolver codigo http 400 quando informacoes estao invalidas")
     @WithMockUser
@@ -63,6 +67,9 @@ class MedicoControllerTest {
                 dadosEndereco());
 
         when(repository.save(any())).thenReturn(new Medico(dadosCadastro));
+        when(viaCepService.buscarEnderecoPorCep(any())).thenReturn(
+                new ViaCepService.EnderecoViaCep("00000000", "rua xpto", "", "bairro", "Brasilia", "DF", null)
+        );
 
         var response = mvc
                 .perform(post("/medicos")
