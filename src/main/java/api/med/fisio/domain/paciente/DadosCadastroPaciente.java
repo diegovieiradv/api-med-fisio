@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import api.med.fisio.domain.endereco.DadosEndereco;
 
 public record DadosCadastroPaciente(
@@ -17,7 +16,7 @@ public record DadosCadastroPaciente(
         @NotBlank
         String telefone,
         @NotBlank
-        @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")
+        @CPF
         String cpf,
 
         @NotNull @Valid DadosEndereco endereco) {
