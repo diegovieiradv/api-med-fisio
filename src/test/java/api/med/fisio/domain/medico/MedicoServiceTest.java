@@ -1,6 +1,7 @@
 package api.med.fisio.domain.medico;
 
 import api.med.fisio.domain.endereco.DadosEndereco;
+import api.med.fisio.domain.endereco.Endereco;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -57,7 +58,7 @@ class MedicoServiceTest {
                 "61999999999",
                 "123456",
                 Especialidade.CARDIOLOGIA,
-                dadosEndereco().toEndereco(),
+                new Endereco(dadosEndereco()),
                 true
         );
 

@@ -1,6 +1,7 @@
 package api.med.fisio.domain.paciente;
 
 import api.med.fisio.domain.endereco.DadosEndereco;
+import api.med.fisio.domain.endereco.Endereco;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -53,7 +54,7 @@ class PacienteServiceTest {
                 "maria@email.com",
                 "61999999999",
                 "529.982.247.25",
-                dadosEndereco().toEndereco(),
+                new Endereco(dadosEndereco()),
                 true
         );
 
