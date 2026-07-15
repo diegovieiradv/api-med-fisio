@@ -8,6 +8,7 @@ import api.med.fisio.domain.medico.MedicoRepository;
 import api.med.fisio.domain.paciente.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -52,6 +53,7 @@ public class AgendaDeConsultas {
         return new DadosDetalhamentoConsulta(consulta);
     }
 
+    @Transactional
     public void cancelar(DadosCancelamentoConsulta dados) {
         if (!consultaRepository.existsById(dados.idConsulta())) {
             throw new ValidacaoException("Id da consulta informado não existe!");
