@@ -31,8 +31,8 @@ class MedicoRepositoryTest {
     private TestEntityManager em;
 
     @Test
-    @DisplayName("Deveria devolver null quando unico medico cadastrado nao esta disponivel na data")
-    void escolherMedicoAleatorioLivreNaDataCenario1() {
+    @DisplayName("Deveria devolver lista vazia quando unico medico cadastrado nao esta disponivel na data")
+    void listarMedicosLivresNaDataCenario1() {
         //given ou arrange
         var proximaSegundaAs10 = LocalDate.now()
                 .with(TemporalAdjusters.next(DayOfWeek.MONDAY))
@@ -42,15 +42,15 @@ class MedicoRepositoryTest {
         cadastrarConsulta(medico, paciente, proximaSegundaAs10);
 
         //when ou act
-        var medicoLivre = medicoRepository.escolherMedicoAleatorioLivreNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
+        var medicosLivres = medicoRepository.listarMedicosLivresNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
 
         //then ou assert
-        assertThat(medicoLivre).isNull();
+        assertThat(medicosLivres).isEmpty();
     }
 
     @Test
     @DisplayName("Deveria devolver medico quando ele estiver disponivel na data")
-    void escolherMedicoAleatorioLivreNaDataCenario2() {
+    void listarMedicosLivresNaDataCenario2() {
         //given ou arrange
         var proximaSegundaAs10 = LocalDate.now()
                 .with(TemporalAdjusters.next(DayOfWeek.MONDAY))
@@ -58,10 +58,10 @@ class MedicoRepositoryTest {
         var medico = cadastrarMedico("Medico", "medico@voll.med", "123456", Especialidade.CARDIOLOGIA);
 
         //when ou act
-        var medicoLivre = medicoRepository.escolherMedicoAleatorioLivreNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
+        var medicosLivres = medicoRepository.listarMedicosLivresNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
 
         //then ou assert
-        assertThat(medicoLivre).isEqualTo(medico);
+        assertThat(medicosLivres).contains(medico);
     }
 
     private void cadastrarConsulta(Medico medico, Paciente paciente, LocalDateTime data) {

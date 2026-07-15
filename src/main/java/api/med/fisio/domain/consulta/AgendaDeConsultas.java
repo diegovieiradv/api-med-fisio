@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class AgendaDeConsultas {
@@ -75,7 +76,13 @@ public class AgendaDeConsultas {
             throw new ValidacaoException("Especialidade é obrigatória quando médico não for escolhido!");
         }
 
-        return medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(), dados.data());
+        var medicosLivres = medicoRepository.listarMedicosLivresNaData(dados.especialidade(), dados.data());
+        if (medicosLivres.isEmpty()) {
+            return null;
+        }
+
+        var indiceAleatorio = ThreadLocalRandom.current().nextInt(medicosLivres.size());
+        return medicosLivres.get(indiceAleatorio);
     }
 
 }
