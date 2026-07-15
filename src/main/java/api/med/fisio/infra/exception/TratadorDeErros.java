@@ -2,6 +2,8 @@ package api.med.fisio.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import api.med.fisio.domain.ValidacaoException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class TratadorDeErros {
+
+    private static final Logger logger = LoggerFactory.getLogger(TratadorDeErros.class);
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity tratarErro404() {
@@ -54,7 +58,8 @@ public class TratadorDeErros {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity tratarErro500(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro: " +ex.getLocalizedMessage());
+        logger.error("Erro interno não tratado: ", ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno do servidor");
     }
 
     private record DadosErroValidacao(String campo, String mensagem) {
